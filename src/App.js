@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import TodoTemplate from './TodoTemplate';
+import TodoInsert from './TodoInsert'
+import TodoList from './TodoList'
 
-function App() {
+const App = () => {
+
+  const todos = [
+    { id:1, text:"일정관리1", checked:true },
+    { id:2, text:"일정관리2", checked:false },
+    { id:3, text:"일정관리3", checked:false }
+  ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoTemplate>
+      <TodoInsert />
+      <TodoList todos={todos} />
+    </TodoTemplate>
   );
-}
+};
 
 export default App;
