@@ -8,11 +8,11 @@ const TodoListBlock = styled.div`
     overflow-y:auto;
 `
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos, onToggle, onRemove}) => {
     return (
         <TodoListBlock>
             {
-              todos.map((item, index)=><TodoListItem item={item} key={index} />)   
+              todos.map((item, index)=><TodoListItem item={item} key={index} onToggle={onToggle} onRemove={onRemove} />)   
             }
         </TodoListBlock>
     );

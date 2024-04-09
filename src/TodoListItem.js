@@ -17,15 +17,20 @@ const TodoListItemBlock = styled.div`
         font-size:1.5rem; }
 `
 
-const TodoListItem = ({item}) => {
+const TodoListItem = ({item, onToggle, onRemove}) => {
     const {id, text, checked } = item
+    
+    // const onClick = (num)=>{
+    //     onToggle(num)
+    // }
+
     return (
         <TodoListItemBlock>
-            <div className="list">
+            <div className="list" onClick={ ()=>onToggle(id) }>
                 { checked ? <MdCheckBox className="red" /> : <MdCheckBoxOutlineBlank /> }
                 <div className={cn("text", {checked})}>{id}. { text }</div>
             </div>
-            <div classs="remove"><MdRemoveCircleOutline /></div>
+            <div classs="remove" onClick={ ()=>onRemove(id) }><MdRemoveCircleOutline /></div>
         </TodoListItemBlock>
     );
 };
