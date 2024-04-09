@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components'
 import { FaPlus } from "react-icons/fa6";
 
@@ -24,16 +24,16 @@ const TodoInsertBlock = styled.div`
 const TodoInsert = ({onInsert}) => {
     const [text, setText] = useState("")
 
-    const onSubmit = (e)=>{
+    const onSubmit = useCallback((e)=>{
         e.preventDefault()
         onInsert(text)
         setText("")
-    }
+    }, [text])
 
-    const onChange = (e)=>{
+    const onChange = useCallback((e)=>{
         console.log(e.target.value)
         setText(e.target.value)
-    }
+    }, [text])
 
     return (
         <TodoInsertBlock>
