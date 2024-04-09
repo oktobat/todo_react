@@ -18,12 +18,12 @@ const TodoListItemBlock = styled.div`
 `
 
 const TodoListItem = ({item}) => {
-    const {text, checked } = item
+    const {id, text, checked } = item
     return (
         <TodoListItemBlock>
             <div className="list">
                 { checked ? <MdCheckBox className="red" /> : <MdCheckBoxOutlineBlank /> }
-                <div className={cn("text", {checked})}>{ text }</div>
+                <div className={cn("text", {checked})}>{id}. { text }</div>
             </div>
             <div classs="remove"><MdRemoveCircleOutline /></div>
         </TodoListItemBlock>

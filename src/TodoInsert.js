@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import { FaPlus } from "react-icons/fa6";
 
@@ -21,11 +21,24 @@ const TodoInsertBlock = styled.div`
     }
 `
 
-const TodoInsert = () => {
+const TodoInsert = ({onInsert}) => {
+    const [text, setText] = useState("")
+
+    const onSubmit = (e)=>{
+        e.preventDefault()
+        onInsert(text)
+        setText("")
+    }
+
+    const onChange = (e)=>{
+        console.log(e.target.value)
+        setText(e.target.value)
+    }
+
     return (
         <TodoInsertBlock>
-            <form className="formbox">
-                <input type="text" placeholder="할 일을 입력하세요." />
+            <form className="formbox" onSubmit={onSubmit}>
+                <input type="text" placeholder="할 일을 입력하세요." onChange={onChange} value={text} />
                 <button type="submit"><FaPlus /></button>
             </form>
         </TodoInsertBlock>

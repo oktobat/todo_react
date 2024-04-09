@@ -1,19 +1,25 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import TodoTemplate from './TodoTemplate';
 import TodoInsert from './TodoInsert'
 import TodoList from './TodoList'
 
 const App = () => {
+  const id = useRef(1);
+  const [todos, setTodos] =useState([
+    // { id:1, text:"일정관리1", checked:true },
+  ])
 
-  const todos = [
-    { id:1, text:"일정관리1", checked:true },
-    { id:2, text:"일정관리2", checked:false },
-    { id:3, text:"일정관리3", checked:false }
-  ]
+  const onInsert = (value)=>{
+      const todo = { id:id.current, text:value, checked:false}
+      id.current = id.current + 1;
+      console.log(id.current)
+      setTodos(todos.concat(todo))
+      console.log(todos)
+  }
 
   return (
     <TodoTemplate>
-      <TodoInsert />
+      <TodoInsert onInsert={onInsert} />
       <TodoList todos={todos} />
     </TodoTemplate>
   );
